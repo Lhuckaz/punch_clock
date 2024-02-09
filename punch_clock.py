@@ -61,8 +61,13 @@ def punch_clock():
     input_password.send_keys(password)
     input_password.send_keys(Keys.RETURN)
 
-    input_description = driver.find_element("id", "descricao")
-    input_description.send_keys(description)
+    current_time = datetime.datetime.now().time()
+    refer_time = datetime.time(11, 0, 0)
+    if current_time < refer_time:
+        input_description = driver.find_element("id", "descricao")
+        input_description.send_keys(description)
+    else:
+        print("Do not insert description")
 
     button = driver.find_element("id", "submitponto")
     button.click()
